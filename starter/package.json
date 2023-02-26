@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/urbanpatrol/employee-profile-generator.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ramon Fritz",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/urbanpatrol/employee-profile-generator/issues"
   },

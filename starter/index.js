@@ -1,14 +1,14 @@
 // Dependencies
 const inquirer = require("inquirer");
-const path = require("path");
 const fs = require("fs");
+const path = require("path");
 
 // Constructors
-const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+// Constants
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
@@ -23,55 +23,55 @@ function init() {
 
 // Prompt user to create a manager when application is started
 function createManagerPrompt() {
-    console.log("createManagerPrompt function called"); // Console logging
+    console.log("createManagerPrompt function called"); // Console log
     inquirer.prompt([{
         type: "input",
-        name: "name",
+        name: "managerName",
         message: "Manager's name?",
         validate: nameInput => {
             if (nameInput) {
                 return true;
             } else {
-                console.log("Please enter a name!"); // Console logging
+                console.log("Please enter a name!"); // Console log
                 return false;
             }
         }
     },
     {
         type: "input",
-        name: "id",
+        name: "managerId",
         message: "Manager's id?",
         validate: idInput => {
             if (idInput) {
                 return true;
             } else {
-                console.log("Please enter an id!"); // Console logging
+                console.log("Please enter an id!"); // Console log
                 return false;
             }
         }
     },
     {
         type: "input",
-        name: "email",
+        name: "managerEmail",
         message: "Manager's email?",
         validate: emailInput => {
             if (emailInput) {
                 return true;
             } else {
-                console.log("Please enter an email!"); // Console logging
+                console.log("Please enter an email!"); // Console log
                 return false;
             }
         },
     },
     {
         type: "input",
-        name: "officeNumber",
+        name: "managerOfficeNumber",
         message: "Manager's office number?",
         validate: officeNumberInput => {
             if (officeNumberInput) {
                 return true;
             } else {
-                console.log("Please enter an office number!"); // Console logging
+                console.log("Please enter an office number!"); // Console log
                 return false;
 
             }
@@ -79,7 +79,7 @@ function createManagerPrompt() {
 
     }
     ]).then(response => {
-        console.log("createManagerPrompt response received"); // Console logging
+        console.log("createManagerPrompt response received"); // Console log
         const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
         teamMembers.push(manager);
         promptForNextEmployee();
@@ -88,14 +88,14 @@ function createManagerPrompt() {
 
 // Prompt for next employee
 function promptForNextEmployee() {
-    console.log("promptForNextEmployee function called"); // Console logging
+    console.log("promptForNextEmployee function called"); // Console log
     inquirer.prompt([{
         type: "list",
         name: "nextEmployee",
         message: "Would you like to add an Engineer or an Intern?",
         choices: ["Engineer", "Intern", "I don't want to add any more team members"]
     }]).then(response => {
-        console.log("promptForNextEmployee response received"); // Console logging
+        console.log("promptForNextEmployee response received"); // Console log
         if (response.nextEmployee === "Engineer") {
             addEngineer();
         } else if (response.nextEmployee === "Intern") {
@@ -108,7 +108,7 @@ function promptForNextEmployee() {
 
 // Add Engineer when selected
 function addEngineer() {
-    console.log("addEngineer function calle"); // Console logging
+    console.log("addEngineer function calle"); // Console log
     inquirer.prompt([{
         type: "input",
         name: "name",
