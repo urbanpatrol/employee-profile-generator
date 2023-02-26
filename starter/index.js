@@ -4,6 +4,7 @@ const path = require("path");
 const fs = require("fs");
 
 // Constructors
+const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -22,6 +23,7 @@ function init() {
 
 // Prompt user to create a manager when application is started
 function createManagerPrompt() {
+    console.log("createManagerPrompt function called"); // Console logging
     inquirer.prompt([{
         type: "input",
         name: "name",
@@ -30,7 +32,7 @@ function createManagerPrompt() {
             if (nameInput) {
                 return true;
             } else {
-                console.log("Please enter a name!");
+                console.log("Please enter a name!"); // Console logging
                 return false;
             }
         }
@@ -43,7 +45,7 @@ function createManagerPrompt() {
             if (idInput) {
                 return true;
             } else {
-                console.log("Please enter an id!");
+                console.log("Please enter an id!"); // Console logging
                 return false;
             }
         }
@@ -56,11 +58,11 @@ function createManagerPrompt() {
             if (emailInput) {
                 return true;
             } else {
-                console.log("Please enter an email!");
+                console.log("Please enter an email!"); // Console logging
                 return false;
             }
         },
-
+    },
     {
         type: "input",
         name: "officeNumber",
@@ -69,15 +71,15 @@ function createManagerPrompt() {
             if (officeNumberInput) {
                 return true;
             } else {
-                console.log("Please enter an office number!");
+                console.log("Please enter an office number!"); // Console logging
                 return false;
 
             }
         }
+
     }
-
-
     ]).then(response => {
+        console.log("createManagerPrompt response received"); // Console logging
         const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
         teamMembers.push(manager);
         promptForNextEmployee();
@@ -86,24 +88,27 @@ function createManagerPrompt() {
 
 // Prompt for next employee
 function promptForNextEmployee() {
+    console.log("promptForNextEmployee function called"); // Console logging
     inquirer.prompt([{
         type: "list",
         name: "nextEmployee",
         message: "Would you like to add an Engineer or an Intern?",
         choices: ["Engineer", "Intern", "I don't want to add any more team members"]
     }]).then(response => {
+        console.log("promptForNextEmployee response received"); // Console logging
         if (response.nextEmployee === "Engineer") {
             addEngineer();
         } else if (response.nextEmployee === "Intern") {
             addIntern();
         } else {
-            generateHTML(teamMembers);
+            generateHTML(team);
         }
     })
 }
 
 // Add Engineer when selected
 function addEngineer() {
+    console.log("addEngineer function calle"); // Console logging
     inquirer.prompt([{
         type: "input",
         name: "name",
@@ -163,6 +168,6 @@ function addIntern() {
 function generateHTML(teamMembers) {
     const html = render(teamMembers);
     fs.writeFile(outputPath, html, { encoding: 'utf8' });
-    console, log("Your team has been created successfully!");
+    console.log("Your team has been created successfully!");
     init();
 };
