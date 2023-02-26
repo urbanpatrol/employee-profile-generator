@@ -23,5 +23,6 @@
   "directories": {
     "lib": "lib"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "keywords": []
 }
