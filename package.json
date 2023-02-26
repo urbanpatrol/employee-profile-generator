@@ -19,5 +19,9 @@
   "dependencies": {
     "inquirer": "^6.5.0",
     "jest": "^29.4.3"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {}
 }
