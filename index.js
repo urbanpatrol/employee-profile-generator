@@ -15,7 +15,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./src/page-template.js");
 
 const teamMembers = [];
-const uniqueIds = [];
+const uniqueIds = []; // to avoid duplicate id input
 
 function init() {
     console.log("Start building your team:");
@@ -48,12 +48,6 @@ function init() {
                     return false;
                 } else {
                     return true;
-                    // }
-                    // if (idInput) {
-                    //     return true;
-                    // } else {
-                    //     console.log("Please enter an id!");
-                    //     return false;
                 }
             }
         },
@@ -140,12 +134,6 @@ function init() {
                     return false;
                 } else {
                     return true;
-                    // }
-                    // if (idInput) {
-                    //     return true;
-                    // } else {
-                    //     console.log("Please enter an id!");
-                    //     return false;
                 }
             }
         },
@@ -184,15 +172,9 @@ function init() {
                     return false;
                 } else {
                     return true;
-                    // }
-                    // if (idInput) {
-                    //     return true;
-                    // } else {
-                    //     console.log("Please enter an id!");
-                    //     return false;
                 }
             }
-        }]),
+        },
         {
             type: "input",
             name: "internEmail",
@@ -203,11 +185,11 @@ function init() {
             name: "internSchool",
             message: "Intern's school?",
         }
-        .then(response => {
+    ]).then(response => {
             const intern = new Intern(response.internName, response.internId, response.internEmail, response.internSchool);
             teamMembers.push(intern);
             promptForNextEmployee();
-        })
+        });
     }
     // generate html 
     function generateHTML(teamMembers) {

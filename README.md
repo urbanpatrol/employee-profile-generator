@@ -48,7 +48,9 @@ When a user enters those requirements, the user is presented with a menu with th
 
 ## Screenshots
 Sample team screenshot
-![](/assets/team-webpage-example.png)
+![](/assets/screenshot-vs-team.png)
+Generated team.html in output folder
+![](/assets/team-profiles-code.png)
 
 ## Technologies
 - <p><a href="https://nodejs.org/">Node.js</a></p>
