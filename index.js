@@ -15,6 +15,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./src/page-template.js");
 
 const teamMembers = [];
+const uniqueIds = [];
 
 function init() {
     console.log("Start building your team:");
@@ -41,11 +42,18 @@ function init() {
             name: "managerId",
             message: "Manager's id?",
             validate: idInput => {
-                if (idInput) {
-                    return true;
-                } else {
-                    console.log("Please enter an id!");
+                // check if id already exists in array
+                if (uniqueIds.includes(idInput)) {
+                    console.log("Id already exists. Please enter a unique ID.");
                     return false;
+                } else {
+                    return true;
+                    // }
+                    // if (idInput) {
+                    //     return true;
+                    // } else {
+                    //     console.log("Please enter an id!");
+                    //     return false;
                 }
             }
         },
@@ -78,6 +86,9 @@ function init() {
 
         }
         ]).then(response => {
+            // add new unique identifier to array
+            uniqueIds.push(response.managerId);
+            // add new manager to array
             const manager = new Manager(response.managerName, response.managerId, response.managerEmail, response.managerOfficeNumber);
             teamMembers.push(manager);
             promptForNextEmployee();
@@ -109,11 +120,34 @@ function init() {
             type: "input",
             name: "engineerName",
             message: "Engineer's name?",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log("Please enter a name!");
+                    return false;
+                }
+            }
         },
         {
             type: "input",
             name: "engineerId",
             message: "Engineer's id?",
+            validate: idInput => {
+                // check if id already exists in array
+                if (uniqueIds.includes(idInput)) {
+                    console.log("Id already exists. Please enter a unique ID.");
+                    return false;
+                } else {
+                    return true;
+                    // }
+                    // if (idInput) {
+                    //     return true;
+                    // } else {
+                    //     console.log("Please enter an id!");
+                    //     return false;
+                }
+            }
         },
         {
             type: "input",
@@ -143,7 +177,22 @@ function init() {
             type: "input",
             name: "internId",
             message: "Intern's id?",
-        },
+            validate: idInput => {
+                // check if id already exists in array
+                if (uniqueIds.includes(idInput)) {
+                    console.log("Id already exists. Please enter a unique ID.");
+                    return false;
+                } else {
+                    return true;
+                    // }
+                    // if (idInput) {
+                    //     return true;
+                    // } else {
+                    //     console.log("Please enter an id!");
+                    //     return false;
+                }
+            }
+        }]),
         {
             type: "input",
             name: "internEmail",
@@ -154,7 +203,7 @@ function init() {
             name: "internSchool",
             message: "Intern's school?",
         }
-        ]).then(response => {
+        .then(response => {
             const intern = new Intern(response.internName, response.internId, response.internEmail, response.internSchool);
             teamMembers.push(intern);
             promptForNextEmployee();

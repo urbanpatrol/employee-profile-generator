@@ -1,11 +1,10 @@
-# employee-profile-generator
+# Engineering Team Profile Page Creator
 
 ## Description
 A Node.js command-line application that takes in information about employees on a software engineering team, and generates an HTML webpage displaying summaries for each person.
 
 ## Links
-### Walkthrough video and sample README file:
-
+Sample HTML in GitHub: https://github.com/urbanpatrol/employee-profile-generator/blob/main/output/team.html
 
 ## User Story
 ```
