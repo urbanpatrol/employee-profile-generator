@@ -19,7 +19,6 @@ const teamMembers = [];
 function init() {
     console.log("Build your team:");
     createManagerPrompt();
-}
 
 // Prompt user to create a manager when application is started
 function createManagerPrompt() {
@@ -80,7 +79,7 @@ function createManagerPrompt() {
     }
     ]).then(response => {
         console.log("createManagerPrompt response received"); // Console log
-        const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
+        const manager = new Manager(response.managerName, response.managerId, response.managerEmail, response.managerOfficeNumber);
         teamMembers.push(manager);
         promptForNextEmployee();
     })
@@ -101,7 +100,7 @@ function promptForNextEmployee() {
         } else if (response.nextEmployee === "Intern") {
             addIntern();
         } else {
-            generateHTML(team);
+            generateHTML(teamMembers);
         }
     })
 }
@@ -111,26 +110,26 @@ function addEngineer() {
     console.log("addEngineer function called"); // Console log
     inquirer.prompt([{
         type: "input",
-        name: "name",
+        name: "engineerName",
         message: "Engineer's name?",
     },
     {
         type: "input",
-        name: "id",
+        name: "engineerId",
         message: "Engineer's id?",
     },
     {
         type: "input",
-        name: "email",
+        name: "engineerEmail",
         message: "Engineer's email?",
     },
     {
         type: "input",
-        name: "github",
+        name: "EngineerGithub",
         message: "Engineer's GitHub username?",
     }
     ]).then(response => {
-        const engineer = new Engineer(response.name, response.id, response.email, response.github);
+        const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
         teamMembers.push(engineer);
         promptForNextEmployee();
     })
@@ -140,26 +139,26 @@ function addEngineer() {
 function addIntern() {
     inquirer.prompt([{
         type: "input",
-        name: "name",
+        name: "internName",
         message: "Intern's name?",
     },
     {
         type: "input",
-        name: "id",
+        name: "internId",
         message: "Intern's id?",
     },
     {
         type: "input",
-        name: "email",
+        name: "internEmail",
         message: "Intern's email?",
     },
     {
         type: "input",
-        name: "school",
+        name: "internSchool",
         message: "Intern's school?",
     }
     ]).then(response => {
-        const intern = new Intern(response.name, response.id, response.email, response.school);
+        const intern = new Intern(response.internName, response.internId, response.internEmail, response.internSchool);
         teamMembers.push(intern);
         promptForNextEmployee();
     })
@@ -167,7 +166,9 @@ function addIntern() {
 
 function generateHTML(teamMembers) {
     const html = render(teamMembers);
-    fs.writeFile(outputPath, html, { encoding: 'utf8' });
+    return fs.writeFileSync(outputPath, html, { encoding: 'utf8' });
     console.log("Your team has been created successfully!");
-    init();
+}
 };
+
+init();
