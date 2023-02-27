@@ -45,15 +45,11 @@ When a user enters those requirements, the user is presented with a menu with th
 ## Usage
 - Type in 'node index.js' to initiate the process.
 - Follow the prompts in creating a Team.
-- Once completed, a webpage with the Team info will be created.
+- Once completed, a webpage with the Team info will be created in the output folder.
 
 ## Screenshots
-Sample generated README file
-![](img/vscode1-readmefile.png)
-Markdown to be generated
-![](img/vscode2-markdown.png)
-Questions coding in index.js
-![](img/vscode3-index-questions.png)
+Sample team screenshot
+![](/assets/team-webpage-example.png)
 
 ## Technologies
 - <p><a href="https://nodejs.org/">Node.js</a></p>
